@@ -52,15 +52,20 @@
 
 // 听筒播放开关
 
-// 发送按钮样式开关\
-else if (indexPath.section == 1 && indexPath.row == 4) {\
-    self.sendButtonStyleSwitch = [UISwitch new];\
-    [self.sendButtonStyleSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"useNewSendButtonStyle"]];\
-    [self.sendButtonStyleSwitch addTarget:self action:@selector(sendButtonStyleChanged:) forControlEvents:UIControlEventValueChanged];\
-    cell.accessoryView = self.sendButtonStyleSwitch;\
-    cell.detailTextLabel.text = @"开启后键盘发送按钮将替换为换行";\
-    cell.detailTextLabel.textColor = [UIColor grayColor];\
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:10];\
+// 发送按钮样式开关
+    if (indexPath.section == 1 && indexPath.row == 4) {
+        UISwitch *sendButtonSwitch = [[UISwitch alloc] init];
+        [sendButtonSwitch addTarget:self action:@selector(sendButtonStyleChanged:) forControlEvents:UIControlEventValueChanged];
+        sendButtonSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"kUseIndependentSendButton"];
+        cell.accessoryView = sendButtonSwitch;
+        
+        UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 35, tableView.frame.size.width-30, 15)];
+        subtitleLabel.text = @"开启后，键盘上的发送按钮会替换成换行";
+        subtitleLabel.textColor = [UIColor grayColor];
+        subtitleLabel.font = [UIFont systemFontOfSize:12];
+        [cell.contentView addSubview:subtitleLabel];
+    }
+    
 }
     else if (indexPath.section == 1 && indexPath.row == 3) {
         UISwitch *switchView = [[UISwitch alloc] init];
@@ -75,14 +80,11 @@ else if (indexPath.section == 1 && indexPath.row == 4) {\
         [self.sendButtonStyleSwitch addTarget:self action:@selector(sendButtonStyleChanged:) forControlEvents:UIControlEventValueChanged];
         cell.accessoryView = self.sendButtonStyleSwitch;
         
-        UILabel *hintLabel = [[UILabel alloc] init];
+        UILabel *hintLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 35, tableView.frame.size.width-30, 15)];
         hintLabel.text = @"开启后键盘发送按钮将替换为换行";
         hintLabel.textColor = [UIColor grayColor];
-        hintLabel.font = [UIFont systemFontOfSize:10];
-        [hintLabel sizeToFit];
-        cell.detailTextLabel.text = hintLabel.text;
-    }
-        cell.accessoryView = switchView;
+        hintLabel.font = [UIFont systemFontOfSize:12];
+        [cell.contentView addSubview:hintLabel];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     else {
@@ -97,7 +99,7 @@ else if (indexPath.section == 1 && indexPath.row == 4) {\
     [[NSUserDefaults standardUserDefaults] setBool:sender.isOn forKey:@"useEarphoneMode"];
 #pragma mark - 发送按钮样式开关事件
 - (void)sendButtonStyleChanged:(UISwitch *)sender {
-    [[NSUserDefaults standardUserDefaults] setBool:sender.isOn forKey:@"useNewSendButtonStyle"];
+    [[NSUserDefaults standardUserDefaults] setBool:sender.isOn forKey:@"kUseIndependentSendButton"];
     [self.tableView reloadData];
 }
 
