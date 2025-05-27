@@ -52,7 +52,7 @@
 
 #pragma mark 点击了历史
 -(void)historyAction{
-    ZXIpaHisVC *VC = [[ZXIpaHisVC alloc]init];
+    ZXGeneralSettingsVC *VC = [[ZXGeneralSettingsVC alloc] initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:VC animated:YES];
 }
 #pragma mark 点击了已下载
