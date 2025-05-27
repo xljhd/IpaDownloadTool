@@ -35,6 +35,14 @@
     return self.sectionTitles[section];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // 为发送按钮样式开关的cell设置更高的高度以容纳提示文本
+    if (indexPath.section == 1 && indexPath.row == 4) {
+        return 60.0; // 增加高度以容纳提示文本
+    }
+    return 44.0; // 默认高度
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.textLabel.text = self.sectionItems[indexPath.section][indexPath.row];
