@@ -38,7 +38,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     // 为发送按钮样式开关的cell设置更高的高度以容纳提示文本
     if (indexPath.section == 1 && indexPath.row == 4) {
-        return 60.0; // 增加高度以容纳提示文本
+        return 70.0; // 增加高度以容纳提示文本和更好的间距
     }
     return 44.0; // 默认高度
 }
@@ -71,9 +71,9 @@
         cell.accessoryView = self.sendButtonStyleSwitch;
         
         // 调整主文本位置，让它稍微上移
-        cell.textLabel.frame = CGRectMake(15, 8, tableView.frame.size.width-100, 20);
+        cell.textLabel.frame = CGRectMake(15, 10, tableView.frame.size.width-100, 20);
         
-        UILabel *hintLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 32, tableView.frame.size.width-30, 20)];
+        UILabel *hintLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 40, tableView.frame.size.width-30, 20)];
         hintLabel.text = @"开启后键盘发送按钮将替换为换行";
         hintLabel.textColor = [UIColor grayColor];
         hintLabel.font = [UIFont systemFontOfSize:12];
