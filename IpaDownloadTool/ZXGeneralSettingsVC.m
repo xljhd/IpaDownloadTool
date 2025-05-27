@@ -3,6 +3,7 @@
 @interface ZXGeneralSettingsVC ()
 @property (nonatomic, strong) NSArray *sectionTitles;
 @property (nonatomic, strong) NSArray *sectionItems;
+@property (nonatomic, strong) UISwitch *sendButtonStyleSwitch;
 @end
 
 @implementation ZXGeneralSettingsVC
@@ -46,27 +47,8 @@
         systemLabel.font = [UIFont systemFontOfSize:14];
         [systemLabel sizeToFit];
         cell.accessoryView = systemLabel;
-    } 
-    // 发送按钮样式开关
-@property (nonatomic, strong) UISwitch *sendButtonStyleSwitch;
-
-// 听筒播放开关
-
-// 发送按钮样式开关
-    if (indexPath.section == 1 && indexPath.row == 4) {
-        UISwitch *sendButtonSwitch = [[UISwitch alloc] init];
-        [sendButtonSwitch addTarget:self action:@selector(sendButtonStyleChanged:) forControlEvents:UIControlEventValueChanged];
-        sendButtonSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"kUseIndependentSendButton"];
-        cell.accessoryView = sendButtonSwitch;
-        
-        UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 35, tableView.frame.size.width-30, 15)];
-        subtitleLabel.text = @"开启后，键盘上的发送按钮会替换成换行";
-        subtitleLabel.textColor = [UIColor grayColor];
-        subtitleLabel.font = [UIFont systemFontOfSize:12];
-        [cell.contentView addSubview:subtitleLabel];
     }
-    
-}
+    // 听筒播放开关
     else if (indexPath.section == 1 && indexPath.row == 3) {
         UISwitch *switchView = [[UISwitch alloc] init];
         [switchView setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"useEarphoneMode"]];
@@ -97,9 +79,10 @@
 #pragma mark - Switch Action
 - (void)earphoneSwitchChanged:(UISwitch *)sender {
     [[NSUserDefaults standardUserDefaults] setBool:sender.isOn forKey:@"useEarphoneMode"];
-#pragma mark - 发送按钮样式开关事件
+}
+
 - (void)sendButtonStyleChanged:(UISwitch *)sender {
-    [[NSUserDefaults standardUserDefaults] setBool:sender.isOn forKey:@"kUseIndependentSendButton"];
+    [[NSUserDefaults standardUserDefaults] setBool:sender.isOn forKey:@"useNewSendButtonStyle"];
     [self.tableView reloadData];
 }
 
