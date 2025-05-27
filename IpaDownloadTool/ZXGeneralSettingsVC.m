@@ -37,8 +37,34 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.textLabel.text = self.sectionItems[indexPath.section][indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    // 深色模式单元格特殊处理
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        UILabel *systemLabel = [[UILabel alloc] init];
+        systemLabel.text = @"跟随系统";
+        systemLabel.textColor = [UIColor grayColor];
+        systemLabel.font = [UIFont systemFontOfSize:14];
+        [systemLabel sizeToFit];
+        cell.accessoryView = systemLabel;
+    } 
+    // 听筒播放开关
+    else if (indexPath.section == 1 && indexPath.row == 3) {
+        UISwitch *switchView = [[UISwitch alloc] init];
+        [switchView setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"useEarphoneMode"]];
+        [switchView addTarget:self action:@selector(earphoneSwitchChanged:) forControlEvents:UIControlEventValueChanged];
+        cell.accessoryView = switchView;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    else {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
     return cell;
+}
+
+#pragma mark - Switch Action
+- (void)earphoneSwitchChanged:(UISwitch *)sender {
+    [[NSUserDefaults standardUserDefaults] setBool:sender.isOn forKey:@"useEarphoneMode"];
 }
 
 @end
