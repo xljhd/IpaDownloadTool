@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18F4DDC62DE5AB8400E7C077 /* ZXGeneralSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4DDC52DE5AB8400E7C077 /* ZXGeneralSettingsVC.m */; };
+		18F4DDC92DE5B23600E7C077 /* ZXGeneralSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4DDC82DE5B23600E7C077 /* ZXGeneralSettingsVC.m */; };
 		741B92A22275943700F24EED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 741B92A12275943700F24EED /* Assets.xcassets */; };
 		741B92A52275943700F24EED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741B92A32275943700F24EED /* LaunchScreen.storyboard */; };
 		741B92A82275943700F24EED /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 741B92A72275943700F24EED /* main.m */; };
@@ -78,8 +78,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		18F4DDC42DE5AB8400E7C077 /* ZXGeneralSettingsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZXGeneralSettingsVC.h; sourceTree = "<group>"; };
-		18F4DDC52DE5AB8400E7C077 /* ZXGeneralSettingsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZXGeneralSettingsVC.m; sourceTree = "<group>"; };
+		18F4DDC72DE5B23600E7C077 /* ZXGeneralSettingsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZXGeneralSettingsVC.h; sourceTree = "<group>"; };
+		18F4DDC82DE5B23600E7C077 /* ZXGeneralSettingsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZXGeneralSettingsVC.m; sourceTree = "<group>"; };
 		741B92952275943100F24EED /* IpaDownloadTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IpaDownloadTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		741B92A12275943700F24EED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		741B92A42275943700F24EED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -246,8 +246,8 @@
 		741B92972275943100F24EED /* IpaDownloadTool */ = {
 			isa = PBXGroup;
 			children = (
-				18F4DDC42DE5AB8400E7C077 /* ZXGeneralSettingsVC.h */,
-				18F4DDC52DE5AB8400E7C077 /* ZXGeneralSettingsVC.m */,
+				18F4DDC72DE5B23600E7C077 /* ZXGeneralSettingsVC.h */,
+				18F4DDC82DE5B23600E7C077 /* ZXGeneralSettingsVC.m */,
 				741B92F22275F8FF00F24EED /* ZXIpaGet(获取应用信息) */,
 				741B92EF2275F8D600F24EED /* ZXIpaHis(历史记录) */,
 				741B92FD2276094000F24EED /* ZXIpaDetail(应用详情) */,
@@ -708,6 +708,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18F4DDC92DE5B23600E7C077 /* ZXGeneralSettingsVC.m in Sources */,
 				7436DAE02277578D007AA858 /* UIViewController+BackButtonHandler.m in Sources */,
 				7436DAA522768B15007AA858 /* SGQRCodeScanManager.m in Sources */,
 				7436DAC62276CCB3007AA858 /* ZXLocalIpaVC.m in Sources */,
@@ -738,7 +739,6 @@
 				741B92DD2275D1B800F24EED /* ZXIpaGetVC.m in Sources */,
 				741B93032276095E00F24EED /* ZXIpaDetailVC.m in Sources */,
 				7436DAB522769A65007AA858 /* UIImage+ZXTheme.m in Sources */,
-				18F4DDC62DE5AB8400E7C077 /* ZXGeneralSettingsVC.m in Sources */,
 				7436DAD92276D19E007AA858 /* ZXLocalIpaDownloadModel.m in Sources */,
 				7436DAB2227699E7007AA858 /* UIImage+Rendering.m in Sources */,
 				7436DABF2276CAE4007AA858 /* NSString+ZXMD5.m in Sources */,
