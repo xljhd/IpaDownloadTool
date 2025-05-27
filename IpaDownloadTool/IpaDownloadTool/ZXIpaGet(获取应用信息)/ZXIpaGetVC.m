@@ -10,6 +10,7 @@
 #import "ZXIpaHttpRequest.h"
 #import "ZXIpaModel.h"
 #import "SGQRCodeScanningVC.h"
+#import "ZXGeneralSettingsVC.h"
 
 #import "ZXIpaHisVC.h"
 #import "ZXLocalIpaVC.h"
