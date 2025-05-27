@@ -14,10 +14,10 @@
     self.sectionItems = @[
         @[@"深色模式", @"字体大小", @"多语言", @"翻译"],
         @[@"聊天背景", @"我的表情", @"照片、视频、文件与通话", @"使用听筒播放语音消息", @"使用独立的发送按钮"],
-        @[@"聊天记录迁移与备份", @"清空全部聊天记录"],
+        @[@"聊天记录迁移与备份", @"清空全部聊天记录"], 
         @[@"存储空间"]
     ];
-    // 不需要注册，我们将在cellForRowAtIndexPath中创建不同样式的cell
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }
 
 #pragma mark - Table view data source
@@ -35,20 +35,20 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    cell.textLabel.text = self.sectionItems[indexPath.section][indexPath.row];
     
-    // 深色模式单元格特殊处理 - 使用Value1样式显示详细信息
+    // 深色模式单元格特殊处理
     if (indexPath.section == 0 && indexPath.row == 0) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
-        cell.textLabel.text = self.sectionItems[indexPath.section][indexPath.row];
-        cell.detailTextLabel.text = @"跟随系统";
-        cell.detailTextLabel.textColor = [UIColor grayColor];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        UILabel *systemLabel = [[UILabel alloc] init];
+        systemLabel.text = @"跟随系统";
+        systemLabel.textColor = [UIColor grayColor];
+        systemLabel.font = [UIFont systemFontOfSize:14];
+        [systemLabel sizeToFit];
+        cell.accessoryView = systemLabel;
     } 
     // 听筒播放开关
     else if (indexPath.section == 1 && indexPath.row == 3) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        cell.textLabel.text = self.sectionItems[indexPath.section][indexPath.row];
         UISwitch *switchView = [[UISwitch alloc] init];
         [switchView setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"useEarphoneMode"]];
         [switchView addTarget:self action:@selector(earphoneSwitchChanged:) forControlEvents:UIControlEventValueChanged];
@@ -56,8 +56,6 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     else {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-        cell.textLabel.text = self.sectionItems[indexPath.section][indexPath.row];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
