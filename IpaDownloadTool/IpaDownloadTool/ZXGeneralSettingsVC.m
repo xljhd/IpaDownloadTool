@@ -17,8 +17,7 @@
         @[@"聊天记录迁移与备份", @"清空全部聊天记录"],
         @[@"存储空间"]
     ];
-    
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    // 不需要注册，我们将在cellForRowAtIndexPath中创建不同样式的cell
 }
 
 #pragma mark - Table view data source
@@ -36,10 +35,38 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.textLabel.text = self.sectionItems[indexPath.section][indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    UITableViewCell *cell;
+    
+    // 深色模式单元格特殊处理 - 使用Value1样式显示详细信息
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        cell.textLabel.text = self.sectionItems[indexPath.section][indexPath.row];
+        cell.detailTextLabel.text = @"跟随系统";
+        cell.detailTextLabel.textColor = [UIColor grayColor];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } 
+    // 听筒播放开关
+    else if (indexPath.section == 1 && indexPath.row == 3) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        cell.textLabel.text = self.sectionItems[indexPath.section][indexPath.row];
+        UISwitch *switchView = [[UISwitch alloc] init];
+        [switchView setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"useEarphoneMode"]];
+        [switchView addTarget:self action:@selector(earphoneSwitchChanged:) forControlEvents:UIControlEventValueChanged];
+        cell.accessoryView = switchView;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    else {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+        cell.textLabel.text = self.sectionItems[indexPath.section][indexPath.row];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
     return cell;
+}
+
+#pragma mark - Switch Action
+- (void)earphoneSwitchChanged:(UISwitch *)sender {
+    [[NSUserDefaults standardUserDefaults] setBool:sender.isOn forKey:@"useEarphoneMode"];
 }
 
 @end
