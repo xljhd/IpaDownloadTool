@@ -39,12 +39,19 @@
     self.webView.backgroundColor = [UIColor clearColor];
     self.webView.opaque =NO;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self showPlaceViewWithText:@"点击右上角开始123"];
+        UIView *placeView = [self showPlaceViewWithText:@"右上角点击开始"];
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handlePlaceViewTap)];
+        [placeView addGestureRecognizer:tapGesture];
     });
     
 }
 
 #pragma mark - Actions
+#pragma mark 点击了占位视图
+-(void)handlePlaceViewTap {
+    [self inputAction]; // Trigger the same action as the URL input button
+}
+
 #pragma mark 点击了历史
 -(void)historyAction{
     ZXIpaHisVC *VC = [[ZXIpaHisVC alloc]init];
