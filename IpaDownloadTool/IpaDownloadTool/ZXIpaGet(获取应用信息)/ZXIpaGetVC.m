@@ -39,9 +39,15 @@
     self.webView.backgroundColor = [UIColor clearColor];
     self.webView.opaque =NO;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        UIView *placeView = [self showPlaceViewWithText:@"右上角点击开始"];
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handlePlaceViewTap)];
-        [placeView addGestureRecognizer:tapGesture];
+        [self showPlaceViewWithText:@"右上角点击开始"];
+        // Get the placeView from subviews
+        for (UIView *subview in self.view.subviews) {
+            if ([subview.accessibilityLabel isEqualToString:@"placeholderView"]) {
+                UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handlePlaceViewTap)];
+                [subview addGestureRecognizer:tapGesture];
+                break;
+            }
+        }
     });
     
 }
