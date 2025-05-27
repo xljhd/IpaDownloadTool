@@ -70,7 +70,10 @@
         [self.sendButtonStyleSwitch addTarget:self action:@selector(sendButtonStyleChanged:) forControlEvents:UIControlEventValueChanged];
         cell.accessoryView = self.sendButtonStyleSwitch;
         
-        UILabel *hintLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 28, tableView.frame.size.width-30, 20)];
+        // 调整主文本位置，让它稍微上移
+        cell.textLabel.frame = CGRectMake(15, 8, tableView.frame.size.width-100, 20);
+        
+        UILabel *hintLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 32, tableView.frame.size.width-30, 20)];
         hintLabel.text = @"开启后键盘发送按钮将替换为换行";
         hintLabel.textColor = [UIColor grayColor];
         hintLabel.font = [UIFont systemFontOfSize:12];
