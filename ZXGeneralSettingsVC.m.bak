@@ -51,17 +51,6 @@
 @property (nonatomic, strong) UISwitch *sendButtonStyleSwitch;
 
 // 听筒播放开关
-
-// 发送按钮样式开关\
-else if (indexPath.section == 1 && indexPath.row == 4) {\
-    self.sendButtonStyleSwitch = [UISwitch new];\
-    [self.sendButtonStyleSwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"useNewSendButtonStyle"]];\
-    [self.sendButtonStyleSwitch addTarget:self action:@selector(sendButtonStyleChanged:) forControlEvents:UIControlEventValueChanged];\
-    cell.accessoryView = self.sendButtonStyleSwitch;\
-    cell.detailTextLabel.text = @"开启后键盘发送按钮将替换为换行";\
-    cell.detailTextLabel.textColor = [UIColor grayColor];\
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:10];\
-}
     else if (indexPath.section == 1 && indexPath.row == 3) {
         UISwitch *switchView = [[UISwitch alloc] init];
         [switchView setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"useEarphoneMode"]];
@@ -95,10 +84,6 @@ else if (indexPath.section == 1 && indexPath.row == 4) {\
 #pragma mark - Switch Action
 - (void)earphoneSwitchChanged:(UISwitch *)sender {
     [[NSUserDefaults standardUserDefaults] setBool:sender.isOn forKey:@"useEarphoneMode"];
-#pragma mark - 发送按钮样式开关事件
-- (void)sendButtonStyleChanged:(UISwitch *)sender {
-    [[NSUserDefaults standardUserDefaults] setBool:sender.isOn forKey:@"useNewSendButtonStyle"];
-    [self.tableView reloadData];
 }
 
 @end
