@@ -10,7 +10,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"通用";
+    self.title = @"设置";
     self.sectionTitles = @[@"界面与显示", @"聊天", @"聊天记录", @"其他"];
     self.sectionItems = @[
         @[@"深色模式", @"字体大小", @"多语言", @"翻译"],
